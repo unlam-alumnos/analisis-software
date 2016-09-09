@@ -1,28 +1,28 @@
 package interfaz;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 import java.awt.Color;
-import java.awt.Image;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFileChooser;
-import javax.swing.JSeparator;
-import javax.swing.SwingConstants;
-import ayuda.TextAreaUpdater;
-import entidades.Clase;
-import entidades.Metodo;
-import metricas.ResultadoMetrica;
-import principal.HerramientaTesting;
 import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.List;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JSeparator;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+
+import ayuda.TextAreaUpdater;
+import entidades.Clase;
+import entidades.Metodo;
+import metricas.ResultadoMetrica;
+import principal.HerramientaTesting;
 
 public class GUI extends JFrame {
 
@@ -186,8 +186,7 @@ public class GUI extends JFrame {
 		
 		JButton btnInfo = new JButton("");
 		btnInfo.addActionListener(mostrarOperadoresHalstead);
-		Image infoIcon = new ImageIcon(this.getClass().getResource("/info.ico")).getImage();
-		btnInfo.setIcon(new ImageIcon(infoIcon));
+		btnInfo.setText("Info");
 		btnInfo.setToolTipText("M\u00e1s informaci\u00f3n");
 		btnInfo.setBounds(686, 291, 32, 32);
 		contentPane.add(btnInfo);
