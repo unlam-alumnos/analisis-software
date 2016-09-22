@@ -4,5 +4,5 @@ public enum TipoMetrica {
 	CantidadComentarios,
 	CantidadLineas,
 	ComplejidadCiclomatica,
-	Halsted;
+	Halstead;
 }

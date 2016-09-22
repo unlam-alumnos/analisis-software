@@ -83,7 +83,7 @@ public class Halstead implements Metrica, Nombrable {
 	}
 
 	public TipoMetrica getTipo() {
-		return TipoMetrica.Halsted;
+		return TipoMetrica.Halstead;
 	}
 	
 }

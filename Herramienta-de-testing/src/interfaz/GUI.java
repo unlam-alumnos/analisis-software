@@ -264,7 +264,7 @@ public class GUI extends JFrame {
 			/**
 			 * Halstead
 			 */
-			halstead = resultados.get(TipoMetrica.Halsted).getResultado().split(" ");
+			halstead = resultados.get(TipoMetrica.Halstead).getResultado().split(" ");
 			datoLongitud.setText(halstead[1]);
 			datoVolumen.setText(halstead[3]);
 			
