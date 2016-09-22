@@ -10,6 +10,7 @@ import entidades.Metodo;
 import entidades.Nombrable;
 import metricas.Metrica;
 import metricas.ResultadoMetrica;
+import metricas.TipoMetrica;
 
 public class Halstead implements Metrica, Nombrable {
 	
@@ -75,13 +76,14 @@ public class Halstead implements Metrica, Nombrable {
 		return new ResultadoMetrica(
 				this.getNombre(), 
 				String.format(
-						"Longitud %d Volumen %.2f n1 %d N1 %d n2 %d N2 %d", 
-						this.longitud, this.volumen, this.cantidadOperadoresUnicos, this.cantidadOperadores, this.cantidadOperandosUnicos, this.cantidadOperandos
+						"Longitud %d Volumen %.2f", 
+						this.longitud, this.volumen
 					)
 				);
 	}
-	
-	public static String[] getOperadores(){
-		return operadores;
+
+	public TipoMetrica getTipo() {
+		return TipoMetrica.Halsted;
 	}
+	
 }

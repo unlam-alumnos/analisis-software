@@ -6,6 +6,7 @@ import entidades.Metodo;
 import entidades.Nombrable;
 import metricas.Metrica;
 import metricas.ResultadoMetrica;
+import metricas.TipoMetrica;
 
 public class CantidadLineas implements Metrica, Nombrable {
 	
@@ -22,5 +23,9 @@ public class CantidadLineas implements Metrica, Nombrable {
 
 	public ResultadoMetrica obtenerResultado() {
 		return new ResultadoMetrica( this.getNombre(), this.cantidadLineas.toString() );
+	}
+	
+	public TipoMetrica getTipo() {
+		return TipoMetrica.CantidadLineas;
 	}
 }

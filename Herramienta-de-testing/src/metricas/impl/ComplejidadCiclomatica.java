@@ -9,6 +9,7 @@ import entidades.Metodo;
 import entidades.Nombrable;
 import metricas.Metrica;
 import metricas.ResultadoMetrica;
+import metricas.TipoMetrica;
 
 public class ComplejidadCiclomatica  implements Metrica, Nombrable {
 	
@@ -43,4 +44,7 @@ public class ComplejidadCiclomatica  implements Metrica, Nombrable {
 		return new ResultadoMetrica( this.getNombre(), this.complejidad.toString() );
 	}
 
+	public TipoMetrica getTipo() {
+		return TipoMetrica.ComplejidadCiclomatica;
+	}
 }
