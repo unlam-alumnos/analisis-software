@@ -18,6 +18,8 @@ import metricas.TipoMetrica;
 import metricas.impl.CantidadComentarios;
 import metricas.impl.CantidadLineas;
 import metricas.impl.ComplejidadCiclomatica;
+import metricas.impl.FanIn;
+import metricas.impl.FanOut;
 import metricas.impl.Halstead;
 
 public class HerramientaTesting {
@@ -49,7 +51,9 @@ public class HerramientaTesting {
 		metricas.add(new ComplejidadCiclomatica());
 		metricas.add(new CantidadLineas());
 		metricas.add(new CantidadComentarios());
-		metricas.add(new Halstead());		
+		metricas.add(new Halstead());
+		metricas.add(new FanIn(this.proyecto));		
+		metricas.add(new FanOut(this.proyecto));
 		
 		for(Metrica metrica : metricas){
 			metrica.calcular(metodo);

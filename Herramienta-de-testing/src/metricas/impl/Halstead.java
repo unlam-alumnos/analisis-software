@@ -7,12 +7,11 @@ import java.util.Set;
 import org.apache.commons.lang3.StringUtils;
 
 import entidades.Metodo;
-import entidades.Nombrable;
 import metricas.Metrica;
 import metricas.ResultadoMetrica;
 import metricas.TipoMetrica;
 
-public class Halstead implements Metrica, Nombrable {
+public class Halstead implements Metrica {
 	
     private Integer longitud;
 	private Double volumen;
@@ -22,7 +21,7 @@ public class Halstead implements Metrica, Nombrable {
     private Integer cantidadOperandosUnicos = 0;
     private Integer cantidadOperandos = 0;
 
-    private static final String operadores [] = {"if", "else", "case", "default", "for", "while", "catch", "throw",
+    public static final String operadores [] = {"if", "else", "case", "default", "for", "while", "catch", "throw",
 			"+", "-", "*", "/", "==", "!=", "=", "<=", ">=", "<", ">",
 			"&&", "||", "and", "or", "equal to"};
 
@@ -31,10 +30,6 @@ public class Halstead implements Metrica, Nombrable {
 	//Set que contendra los operandos del codigo fuente
 	private Set<String> setOperandos = new HashSet<String>();
 
-	public String getNombre() {
-		return "Halsted";
-	}
-	
 	public void calcular(Metodo metodo) {
 		List<String> codigo = metodo.getCodigo();
     	this.longitud = 0;
@@ -74,7 +69,7 @@ public class Halstead implements Metrica, Nombrable {
 
 	public ResultadoMetrica obtenerResultado() {
 		return new ResultadoMetrica(
-				this.getNombre(), 
+				this, 
 				String.format(
 						"Longitud %d Volumen %.2f", 
 						this.longitud, this.volumen

@@ -81,18 +81,17 @@ public class LectorJavaParser extends LectorProyecto {
             } else if (miembro instanceof MethodDeclaration) {
             	
             	MethodDeclaration metodo = (MethodDeclaration) miembro;
-            	
-            	nuevaClase.getMetodos().add(
+
+            	//Si no es abstracto
+            	if(metodo.getBody()!=null){
+	            	nuevaClase.getMetodos().add(
 						new Metodo(
-								metodo.getName(),
-								nuevaClase,
-								Arrays.asList(
-										metodo.getBody()==null ? 
-												new String[0] : metodo.getBody().toString().split("\n")
-								)
+							metodo.getName(),
+							nuevaClase,
+							Arrays.asList( metodo.getBody().toString().split("\n") )
 						)
-				);
-            	
+					);
+            	}
             //Si encuentro un constructor lo agrego a la nueva clase como metodo
 	        } else if (miembro instanceof ConstructorDeclaration) {
 	        	

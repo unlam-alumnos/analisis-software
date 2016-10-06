@@ -5,7 +5,7 @@
          
     <modelVersion>4.0.0</modelVersion>
     <groupId>edu.unlam</groupId>
-    <artifactId>herramientatesting</artifactId>
+    <artifactId>HerramientaTesting</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
 
@@ -25,20 +25,29 @@
     <build>
         <sourceDirectory>src</sourceDirectory>
         <plugins>
-            <plugin>
-                <!-- Build an executable JAR -->
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>3.0.2</version>
-                <configuration>
-                    <archive>
-                        <manifest>
-                            <addClasspath>true</addClasspath>
-                            <mainClass>principal.HerramientaTesting</mainClass>
-                        </manifest>
-                    </archive>
-                </configuration>
-            </plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<configuration>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+					<archive>
+					  <manifest>
+						<mainClass>principal.HerramientaTesting</mainClass>
+					  </manifest>
+					</archive>
+				</configuration>
+				<executions>
+				  <execution>
+					<id>make-assembly</id>
+					<phase>package</phase>
+					<goals>
+						<goal>single</goal>
+					</goals>
+				  </execution>
+				</executions>
+			</plugin>
         </plugins>
     </build>
 

@@ -3,19 +3,14 @@ package metricas.impl;
 import java.util.List;
 
 import entidades.Metodo;
-import entidades.Nombrable;
 import metricas.Metrica;
 import metricas.ResultadoMetrica;
 import metricas.TipoMetrica;
 
-public class CantidadComentarios implements Metrica, Nombrable {
+public class CantidadComentarios implements Metrica {
 	
 	private Integer nroComentarios;
 	
-	public String getNombre() {
-		return "Cantidad de comentarios";
-	}
-
 	public void calcular(Metodo metodo) {
 		List<String> codigo = metodo.getCodigo();
 		String aux = null;
@@ -43,7 +38,7 @@ public class CantidadComentarios implements Metrica, Nombrable {
 	}
 
 	public ResultadoMetrica obtenerResultado() {
-		return new ResultadoMetrica( this.getNombre(), this.nroComentarios.toString() );
+		return new ResultadoMetrica( this, this.nroComentarios.toString() );
 	}
 
 	public TipoMetrica getTipo() {

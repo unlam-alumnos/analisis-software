@@ -13,6 +13,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
@@ -22,7 +23,10 @@ import entidades.Clase;
 import entidades.Metodo;
 import metricas.ResultadoMetrica;
 import metricas.TipoMetrica;
+import metricas.impl.Halstead;
 import principal.HerramientaTesting;
+import java.awt.Font;
+import java.awt.SystemColor;
 
 public class GUI extends JFrame {
 
@@ -36,12 +40,14 @@ public class GUI extends JFrame {
 	private List<Clase> clasesProyecto;
 	private List<Metodo> metodosClaseElegida;
 	private TextArea txtAreaCodigo;
-	private JLabel datoComplejidadCiclomatica;
-	private JLabel datoLineasCodigo;
-	private JLabel datoLineasComentarios;
+	private JLabel datoComplejidad;
+	private JLabel datoLineas;
+	private JLabel datoComentarios;
 	private JLabel datoPorcentajeComentarios;
 	private JLabel datoLongitud;
 	private JLabel datoVolumen;
+	private JLabel datoFanIn;		
+ 	private JLabel datoFanOut;
 
 	public GUI() {
 		
@@ -87,63 +93,81 @@ public class GUI extends JFrame {
 		cbMetodos.addActionListener(cargarMetricasCodigo);
 		contentPane.add(cbMetodos);
 		
-		JLabel lblCodigo = new JLabel("C\u00F3digo:");
+		JLabel lblCodigo = new JLabel("Código:");
 		lblCodigo.setBounds(10, 97, 89, 20);
 		contentPane.add(lblCodigo);
 		
-		JLabel label = new JLabel("Complejidad Ciclom\u00E1tica");
-		label.setForeground(Color.DARK_GRAY);
-		label.setBounds(39, 457, 200, 20);
-		contentPane.add(label);
+		JLabel lblComplejidad = new JLabel("Complejidad Ciclomática");
+		lblComplejidad.setForeground(Color.DARK_GRAY);
+		lblComplejidad.setBounds(20, 450, 190, 20);
+		contentPane.add(lblComplejidad);
 		
-		datoComplejidadCiclomatica = new JLabel("");
-		datoComplejidadCiclomatica.setBounds(39, 479, 200, 20);
-		contentPane.add(datoComplejidadCiclomatica);
+		datoComplejidad = new JLabel("");
+		datoComplejidad.setBounds(20, 470, 190, 20);
+		contentPane.add(datoComplejidad);
 		
-		JLabel label_1 = new JLabel("L\u00EDneas de C\u00F3digo");
-		label_1.setForeground(Color.DARK_GRAY);
-		label_1.setBounds(39, 511, 200, 20);
-		contentPane.add(label_1);
+		JLabel lblLineas = new JLabel("Líneas de Código");
+		lblLineas.setForeground(Color.DARK_GRAY);
+		lblLineas.setBounds(20, 490, 190, 20);
+		contentPane.add(lblLineas);
 		
-		datoLineasCodigo = new JLabel("");
-		datoLineasCodigo.setBounds(39, 528, 200, 20);
-		contentPane.add(datoLineasCodigo);
+		datoLineas = new JLabel("");
+		datoLineas.setBounds(20, 510, 190, 20);
+		contentPane.add(datoLineas);
 		
-		JLabel label_2 = new JLabel("L\u00EDneas de Comentarios");
-		label_2.setForeground(Color.DARK_GRAY);
-		label_2.setBounds(277, 457, 200, 20);
-		contentPane.add(label_2);
+		JLabel lblComentarios = new JLabel("Líneas de Comentarios");
+		lblComentarios.setForeground(Color.DARK_GRAY);
+		lblComentarios.setBounds(210, 450, 190, 20);
+		contentPane.add(lblComentarios);
 		
-		datoLineasComentarios = new JLabel("");
-		datoLineasComentarios.setBounds(277, 477, 200, 20);
-		contentPane.add(datoLineasComentarios);
+		datoComentarios = new JLabel("");
+		datoComentarios.setBounds(210, 470, 190, 20);
+		contentPane.add(datoComentarios);
 		
-		JLabel lblPorcentajeDeComentarios = new JLabel("Porcentaje de Comentarios");
-		lblPorcentajeDeComentarios.setForeground(Color.DARK_GRAY);
-		lblPorcentajeDeComentarios.setBounds(277, 511, 200, 20);
-		contentPane.add(lblPorcentajeDeComentarios);
+		JLabel lblPorcentajeComentarios = new JLabel("% de Comentarios");
+		lblPorcentajeComentarios.setForeground(Color.DARK_GRAY);
+		lblPorcentajeComentarios.setBounds(210, 490, 190, 20);
+		contentPane.add(lblPorcentajeComentarios);
 		
 		datoPorcentajeComentarios = new JLabel("");
-		datoPorcentajeComentarios.setBounds(277, 528, 200, 20);
+		datoPorcentajeComentarios.setBounds(210, 510, 190, 20);
 		contentPane.add(datoPorcentajeComentarios);
 		
-		JLabel label_3 = new JLabel("Longitud");
-		label_3.setForeground(Color.DARK_GRAY);
-		label_3.setBounds(538, 457, 111, 20);
-		contentPane.add(label_3);
+		JLabel lblFanIn = new JLabel("Fan-In");		
+ 		lblFanIn.setForeground(Color.DARK_GRAY);		
+ 		lblFanIn.setBounds(400, 450, 170, 20);		
+ 		contentPane.add(lblFanIn);		
+ 				
+ 		datoFanIn = new JLabel("");		
+ 		datoFanIn.setBounds(400, 470, 170, 20);		
+ 		contentPane.add(datoFanIn);		
+ 				
+ 		JLabel lblFanOut = new JLabel("Fan-Out");		
+ 		lblFanOut.setForeground(Color.DARK_GRAY);		
+ 		lblFanOut.setBounds(400, 490, 170, 20);		
+ 		contentPane.add(lblFanOut);		
+ 				
+ 		datoFanOut = new JLabel("");		
+ 		datoFanOut.setBounds(400, 510, 170, 20);		
+ 		contentPane.add(datoFanOut);
 		
-		datoLongitud = new JLabel("");
-		datoLongitud.setBounds(538, 477, 156, 20);
-		contentPane.add(datoLongitud);
-		
-		JLabel label_4 = new JLabel("Volumen");
-		label_4.setForeground(Color.DARK_GRAY);
-		label_4.setBounds(538, 511, 200, 20);
-		contentPane.add(label_4);
-		
-		datoVolumen = new JLabel("");
-		datoVolumen.setBounds(538, 528, 200, 20);
-		contentPane.add(datoVolumen);
+ 		JLabel lblLongitud = new JLabel("Longitud");
+ 		lblLongitud.setForeground(Color.DARK_GRAY);
+ 		lblLongitud.setBounds(570, 450, 170, 20);
+ 		contentPane.add(lblLongitud);
+ 		
+ 		datoLongitud = new JLabel("");
+ 		datoLongitud.setBounds(570, 470, 170, 20);
+ 		contentPane.add(datoLongitud);
+ 		
+ 		JLabel lblVolumen = new JLabel("Volumen");
+ 		lblVolumen.setForeground(Color.DARK_GRAY);
+ 		lblVolumen.setBounds(570, 490, 170, 20);
+ 		contentPane.add(lblVolumen);
+ 		
+ 		datoVolumen = new JLabel("");
+ 		datoVolumen.setBounds(570, 510, 170, 20);
+ 		contentPane.add(datoVolumen);
 		
 		txtAreaCodigo = new TextArea();
 		txtAreaCodigo.setBackground(Color.WHITE);
@@ -163,9 +187,17 @@ public class GUI extends JFrame {
 		separator_2.setBounds(10, 410, 709, 2);
 		contentPane.add(separator_2);
 		
-		JLabel lblAnlisis = new JLabel("Análisis:");
-		lblAnlisis.setBounds(10, 422, 89, 23);
-		contentPane.add(lblAnlisis);
+		JLabel lblAnalisis = new JLabel("Análisis:");
+		lblAnalisis.setBounds(10, 420, 89, 20);
+		contentPane.add(lblAnalisis);
+		
+		JButton btnHalstead = new JButton("Info Halstead");
+		btnHalstead.setBackground(SystemColor.control);
+		btnHalstead.setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 12));
+		btnHalstead.setForeground(Color.DARK_GRAY);
+		btnHalstead.setBounds(570, 535, 150, 20);
+		btnHalstead.addActionListener(mostrarOperadoresHalstead);
+		contentPane.add(btnHalstead);
 		
 	}
 	
@@ -247,19 +279,38 @@ public class GUI extends JFrame {
              * Complejidad Ciclomatica
              */
             Integer complejidadCiclomatica = Integer.parseInt(resultados.get(TipoMetrica.ComplejidadCiclomatica).getResultado());            
-        	datoComplejidadCiclomatica.setForeground(Color.DARK_GRAY);
-			datoComplejidadCiclomatica.setText(complejidadCiclomatica.toString());
-			
+            datoComplejidad.setText(complejidadCiclomatica.toString());
+            
+            if( complejidadCiclomatica > 10){		 
+            	datoComplejidad.setForeground(Color.RED);		
+            	datoComplejidad.setToolTipText("La complejidad ciclom\u00E1tica supera 10, es recomendable modularizar el m\u00E9todo.");		
+            }else{		
+            	datoComplejidad.setForeground(Color.DARK_GRAY);		
+            	datoComplejidad.setToolTipText(null);		
+            }  
 			
 			/**
 			 * Lineas de codigo, comentarios y porcentaje de comentarios
 			 */
-			datoLineasCodigo.setText(resultados.get(TipoMetrica.CantidadLineas).getResultado());
+			datoLineas.setText(resultados.get(TipoMetrica.CantidadLineas).getResultado());
 
-			datoLineasComentarios.setText(resultados.get(TipoMetrica.CantidadComentarios).getResultado());
-			Double porcentajeComentarios = Integer.parseInt(datoLineasComentarios.getText()) * 100.0 / Integer.parseInt(datoLineasCodigo.getText());
-        	datoPorcentajeComentarios.setForeground(Color.DARK_GRAY);
+			datoComentarios.setText(resultados.get(TipoMetrica.CantidadComentarios).getResultado());
+			Double porcentajeComentarios = Integer.parseInt(datoComentarios.getText()) * 100.0 / Integer.parseInt(datoLineas.getText());
 			datoPorcentajeComentarios.setText(String.format("%.2f", porcentajeComentarios) + "%");
+			
+			if( porcentajeComentarios < 15){		
+				datoPorcentajeComentarios.setForeground(Color.RED);		
+				datoPorcentajeComentarios.setToolTipText("El porcentaje de comentarios recomendable es del 15%. Agregue m\u00E1s comentarios al m\u00E9todo.");		
+			}else{		
+			 	datoPorcentajeComentarios.setForeground(Color.DARK_GRAY);		
+			 	datoPorcentajeComentarios.setToolTipText(null);		
+			}
+			
+			/**
+			 * Fan In/Out
+			 */
+			datoFanIn.setText(resultados.get(TipoMetrica.FanIn).getResultado());		
+			datoFanOut.setText(resultados.get(TipoMetrica.FanOut).getResultado());
 			
 			/**
 			 * Halstead
@@ -267,8 +318,19 @@ public class GUI extends JFrame {
 			halstead = resultados.get(TipoMetrica.Halstead).getResultado().split(" ");
 			datoLongitud.setText(halstead[1]);
 			datoVolumen.setText(halstead[3]);
-			
+
 		}
 	};
+	
+	private ActionListener mostrarOperadoresHalstead = new ActionListener() {		
+ 		
+ 		public void actionPerformed(ActionEvent e) {		
+ 			String msg = "Operadores considerados:\n";		
+ 			for (String operador : Halstead.operadores) {		
+ 				msg += operador + ", ";		
+ 			}		
+ 			JOptionPane.showMessageDialog(new JFrame(), msg, "Informacion - Halstead", JOptionPane.INFORMATION_MESSAGE);		
+  		}		  		
+  	};
 }
 

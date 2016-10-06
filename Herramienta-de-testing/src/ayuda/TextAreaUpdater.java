@@ -19,6 +19,7 @@ public class TextAreaUpdater implements Runnable {
 		for(String textLine : text){
 			textArea.append(textLine.concat("\n"));
 		}
+		textArea.setCaretPosition(0);
 	}
 
 }

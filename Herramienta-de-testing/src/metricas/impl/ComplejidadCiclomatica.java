@@ -6,19 +6,14 @@ import org.apache.commons.lang3.StringUtils;
 
 import ayuda.Cadenas;
 import entidades.Metodo;
-import entidades.Nombrable;
 import metricas.Metrica;
 import metricas.ResultadoMetrica;
 import metricas.TipoMetrica;
 
-public class ComplejidadCiclomatica  implements Metrica, Nombrable {
+public class ComplejidadCiclomatica  implements Metrica {
 	
 	private Integer complejidad;
 	
-	public String getNombre() {
-		return "Complejidad ciclomática";
-	}
-
 	public void calcular(Metodo metodo) {
 		List<String> codigo = metodo.getCodigo();
 		this.complejidad = 0;
@@ -41,7 +36,7 @@ public class ComplejidadCiclomatica  implements Metrica, Nombrable {
 	}
 	
 	public ResultadoMetrica obtenerResultado() {
-		return new ResultadoMetrica( this.getNombre(), this.complejidad.toString() );
+		return new ResultadoMetrica( this, this.complejidad.toString() );
 	}
 
 	public TipoMetrica getTipo() {

@@ -1,23 +1,19 @@
 package metricas;
 
-import entidades.Nombrable;
+public class ResultadoMetrica {
 
-public class ResultadoMetrica implements Nombrable {
-
-	private String nombre;
+	private Metrica metrica;
 	private String resultado;
 	
-	public ResultadoMetrica(String nombreMetrica, String resultado) {
-		this.nombre = nombreMetrica;
+	public ResultadoMetrica(Metrica metrica, String resultado) {
+		this.metrica = metrica;
 		this.resultado = resultado;
 	}
 	
 	public String getNombre() {
-		return nombre;
+		return this.metrica.getTipo().getDescripcion();
 	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+	
 	public String getResultado() {
 		return resultado;
 	}
