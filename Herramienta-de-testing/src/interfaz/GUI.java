@@ -54,7 +54,7 @@ public class GUI extends JFrame {
 		setResizable(false);
 		setTitle("Testing Tool");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 738, 560);
+		setBounds(100, 100, 740, 600);
 		contentPane = new JPanel();
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -195,7 +195,7 @@ public class GUI extends JFrame {
 		btnHalstead.setBackground(SystemColor.control);
 		btnHalstead.setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 12));
 		btnHalstead.setForeground(Color.DARK_GRAY);
-		btnHalstead.setBounds(570, 535, 150, 20);
+		btnHalstead.setBounds(570, 540, 150, 20);
 		btnHalstead.addActionListener(mostrarOperadoresHalstead);
 		contentPane.add(btnHalstead);
 		
