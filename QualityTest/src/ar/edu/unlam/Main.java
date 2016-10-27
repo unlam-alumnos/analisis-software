@@ -38,9 +38,6 @@ public class Main {
 	private SubCaracteristica subCaractActual;
 	private AlgoritmoCalidad algoritmo;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -54,9 +51,6 @@ public class Main {
 		});
 	}
 
-	/**
-	 * Create the application.
-	 */
 	public Main() {
 		this.algoritmo = new AlgoritmoCalidad();
 		this.algoritmo.cargar();
@@ -131,13 +125,13 @@ public class Main {
 		frmAlgoritmoDeCalidad.getContentPane().setLayout(null);
 
 		lblCaracteristica = new JLabel();
-		lblCaracteristica.setBounds(100, 10, 300, 40);
+		lblCaracteristica.setBounds(50, 10, 400, 40);
 		lblCaracteristica.setFont(new Font("Arial", Font.BOLD, 25));
 		lblCaracteristica.setHorizontalAlignment(SwingConstants.CENTER);
 		frmAlgoritmoDeCalidad.getContentPane().add(lblCaracteristica);
 
 		lblSubCaracteristica = new JLabel();
-		lblSubCaracteristica.setBounds(100, 60, 300, 40);
+		lblSubCaracteristica.setBounds(50, 60, 400, 40);
 		lblSubCaracteristica.setForeground(Color.DARK_GRAY);
 		lblSubCaracteristica.setFont(new Font("Arial", Font.PLAIN, 20));
 		lblSubCaracteristica.setHorizontalAlignment(SwingConstants.CENTER);

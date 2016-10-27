@@ -8,6 +8,9 @@ import ar.edu.unlam.caracteristicas.SubCaracteristica;
 import ar.edu.unlam.caracteristicas.definidas.Eficiencia;
 import ar.edu.unlam.caracteristicas.definidas.Fiabilidad;
 import ar.edu.unlam.caracteristicas.definidas.Funcionalidad;
+import ar.edu.unlam.caracteristicas.definidas.Mantenibilidad;
+import ar.edu.unlam.caracteristicas.definidas.Portabilidad;
+import ar.edu.unlam.caracteristicas.definidas.Usabilidad;
 
 public class AlgoritmoCalidad {
 
@@ -26,7 +29,10 @@ public class AlgoritmoCalidad {
 		this.caracteristicas = Arrays.asList(
 				new Funcionalidad(),
 				new Eficiencia(),
-				new Fiabilidad()
+				new Fiabilidad(),
+				new Mantenibilidad(),
+				new Usabilidad(),
+				new Portabilidad()
 			);
 		
 		this.subCaracteristicas = new ArrayList<SubCaracteristica>();
