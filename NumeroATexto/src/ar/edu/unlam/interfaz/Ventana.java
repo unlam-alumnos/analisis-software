@@ -5,7 +5,11 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.swing.JButton;
@@ -25,6 +29,12 @@ public class Ventana {
 	private final String USUARIO_DEFAULT = "admin";
 	private final String PASSWORD_DEFAULT = "123456";
 	
+	private List<String> serials;
+	private final String DEFAULT_SERIAL = "ABCD-1234";
+	private final String SERIAL_CHECK_FILE = 
+			System.getProperty("os.name").toLowerCase().contains("windows") ? 
+					"n2t.data" : ".n2t.data";
+	
 	private JFrame frm;
 	private JLabel lblTitulo;
 	
@@ -38,6 +48,9 @@ public class Ventana {
 	private JTextField txtNumero;
 	private JLabel lblNumeroTexto;
 	private JButton btnConvertir;
+	
+	private JTextField txtSerial;
+	private JButton btnSerial;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -57,10 +70,12 @@ public class Ventana {
 		this.conversor = new n2t();
 		this.credenciales = new HashMap<String, String>();
 		this.credenciales.put(this.USUARIO_DEFAULT, this.PASSWORD_DEFAULT);
+		this.serials = new ArrayList<String>();
+		this.serials.add(this.DEFAULT_SERIAL);
 		
 		this.frm = new JFrame();
 		this.frm.setTitle("Number 2 Text");
-		this.frm.setBounds(100, 100, 500, 300);
+		this.frm.setBounds(100, 100, 500, 350);
 		this.frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.frm.setLocationRelativeTo(null);
 		this.frm.getContentPane().setLayout(null);
@@ -80,9 +95,63 @@ public class Ventana {
 		this.frm.getContentPane().add(this.lblTitulo);
 		this.frm.getContentPane().add(this.lblMensaje);
 		
-		this.cargarLogin();
+		if(this.serialIngresado()){
+			this.cargarLogin();
+		} else {
+			this.cargarSerial();
+		}
 	}
 
+	private Boolean serialIngresado() {
+		return new File(this.SERIAL_CHECK_FILE).exists();
+	}
+
+	private void cargarSerial() {
+		this.lblMensaje.setText("Ingrese serial para validar la instalación");
+		
+		this.txtSerial = new JTextField();
+		this.txtSerial.setFont(new Font("Arial", Font.PLAIN, 15));
+		this.txtSerial.setBounds(150, 160, 200, 20);
+		this.txtSerial.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				validarSerial();
+			}
+		});
+		
+		this.btnSerial = new JButton("Validar");
+		this.btnSerial.setBounds(150, 240, 200, 20);
+		this.btnSerial.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				validarSerial();
+			}
+		});
+		
+		this.frm.getContentPane().add(this.txtSerial);
+		this.frm.getContentPane().add(this.btnSerial);
+	}
+	
+	private void validarSerial(){
+		if(this.serials.contains(this.txtSerial.getText())){
+			try {
+				new File(this.SERIAL_CHECK_FILE).createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			this.txtSerial.setVisible(false);
+			this.btnSerial.setVisible(false);
+			
+			this.cargarLogin();
+			
+		} else {
+			JOptionPane.showMessageDialog(
+				null,
+				"Serial inválido",
+				this.lblTitulo.getText(),
+				JOptionPane.ERROR_MESSAGE
+			);
+		}
+	}
+	
 	private void cargarLogin() {
 		
 		this.lblMensaje.setText("Ingrese usuario y password válidos");
